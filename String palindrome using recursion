@@ -20,7 +20,7 @@ bool isPalindrome(string str, int low, int high)
  
 int main()
 {
-    string str = "XYBYBYX";
+    string str = "MADAM";
     int len = str.length();
  
     if (isPalindrome(str, 0, len - 1)) {
