@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<vector<int>>result;
+    void helper(vector<int>& candidates,int index,int n,vector<int>&interim,int target)
+    {
+        if(target == 0)
+        {
+            result.push_back(interim);
+            return;
+            
+        }
+        if(index == n)
+            return;
+        for(int i = index;i<n;i++)
+        {
+            if(candidates[i]<=target)
+            {
+                interim.push_back(candidates[i]);
+                helper(candidates,i+1,n,interim,target-candidates[i]);
+                interim.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+       int n = candidates.size();
+        vector<int>interim;
+        sort(candidates.begin(),candidates.end());
+        helper(candidates,0,n,interim,target);
+        set<vector<int>>pq;
+        for(auto i:result)
+        pq.insert(i);
+        vector<vector<int>>result1;
+        for(auto i:pq)
+        {
+            result1.push_back(i);
+        }
+        return result1;
+    }
+};
